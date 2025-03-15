@@ -20,3 +20,6 @@ INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR})
 SET(CMAKE_CXX_STANDARD 17)
 
 TARGET_LINK_LIBRARIES(server PRIVATE Threads::Threads ${Boost_LIBRARIES})
+
+# Определение макроса с путём к конфигурационному файлу
+TARGET_COMPILE_DEFINITIONS(server PRIVATE CONFIG_PATH="$ENV{HOME}/trading_exchange/resources/configs/config.json")

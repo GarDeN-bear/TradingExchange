@@ -42,22 +42,22 @@ typedef std::pair<std::string, float> CurrencyTypeValue;
  * @brief Тип заявки.
  */
 enum OrderType {
-  OrderType_None, //!< Нет заявки.
-  OrderType_Buy,  //!< Заявка на покупку.
-  OrderType_Sell  //!< Заявка на продажу.
+    OrderType_None, //!< Нет заявки.
+    OrderType_Buy, //!< Заявка на покупку.
+    OrderType_Sell //!< Заявка на продажу.
 };
 
 /**
  * @brief Заявка.
  */
 struct Order {
-  std::string userID = ""; //!< ID пользователя.
-  //! Объём заявки (сколько необходимо купить валюты).
-  CurrencyTypeValue volume = CurrencyTypeValue("", 0.f);
-  //! Цена покупаемой валюты.
-  CurrencyTypeValue price = CurrencyTypeValue("", 0.f);
-  OrderType type = OrderType_None; //!< Тип заявки.
-  std::time_t time = 0; //!< Время регистрации заявки.
+    std::string userID = ""; //!< ID пользователя.
+    //! Объём заявки (сколько необходимо купить валюты).
+    CurrencyTypeValue volume = CurrencyTypeValue("", 0.f);
+    //! Цена покупаемой валюты.
+    CurrencyTypeValue price = CurrencyTypeValue("", 0.f);
+    OrderType type = OrderType_None; //!< Тип заявки.
+    std::time_t time = 0; //!< Время регистрации заявки.
 };
 
 } // namespace common

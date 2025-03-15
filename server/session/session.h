@@ -1,6 +1,7 @@
 #pragma once
 
 #include "common.h"
+#include <pqxx/pqxx>
 
 using boost::asio::ip::tcp;
 
@@ -11,52 +12,52 @@ using boost::asio::ip::tcp;
  */
 class Session {
 public:
-  /**
-   * @brief Конструктор.
-   * @param io_service Сервис для сетевых операций.
-   */
-  Session(boost::asio::io_service &io_service);
+    /**
+     * @brief Конструктор.
+     * @param io_service Сервис для сетевых операций.
+     */
+    Session(boost::asio::io_service &io_service);
 
-  /**
-   * @brief Получить сокет.
-   * @return Сокет.
-   */
-  tcp::socket &getSocket();
+    /**
+     * @brief Получить сокет.
+     * @return Сокет.
+     */
+    tcp::socket &getSocket();
 
-  /**
-   * @brief Запустить работу сессии.
-   */
-  void startSession();
+    /**
+     * @brief Запустить работу сессии.
+     */
+    void startSession();
 
-  /**
-   * @brief Обработать входящие данные.
-   * @param error Ошибка чтения данных.
-   * @param bytes_transferred Количество принятых байт.
-   */
-  void handleRead(const boost::system::error_code &error,
-                  size_t bytes_transferred);
+    /**
+     * @brief Обработать входящие данные.
+     * @param error Ошибка чтения данных.
+     * @param bytes_transferred Количество принятых байт.
+     */
+    void handleRead(const boost::system::error_code &error, size_t bytes_transferred);
 
-  /**
-   * @brief Обработать отправление данных.
-   * @param error Ошибка чтения данных.
-   */
-  void handleWrite(const boost::system::error_code &error);
+    /**
+     * @brief Обработать отправление данных.
+     * @param error Ошибка чтения данных.
+     */
+    void handleWrite(const boost::system::error_code &error);
 
 private:
-  tcp::socket socket_;          //!< Сокет.
-  char data_[limits::buffSize]; //!< Принимаемые данные.
+    tcp::socket socket_; //!< Сокет.
+    char data_[limits::buffSize]; //!< Принимаемые данные.
+    //! Соединение к БД SQL.
 
-  /**
-   * @brief Создать заявку из запроса.
-   * @param request Запрос.
-   * @return Заявка.
-   */
-  common::Order createOrderFromRequest(const std::string &request) const;
+    /**
+     * @brief Создать заявку из запроса.
+     * @param request Запрос.
+     * @return Заявка.
+     */
+    common::Order createOrderFromRequest(const std::string &request) const;
 
-  /**
-   * @brief Создать ответ на запрос.
-   * @param json Данные в JSON формате.
-   * @return Ответ.
-   */
-  std::string createResponse(const nlohmann::json &json);
+    /**
+     * @brief Создать ответ на запрос.
+     * @param json Данные в JSON формате.
+     * @return Ответ.
+     */
+    std::string createResponse(const nlohmann::json &json);
 };

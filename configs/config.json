@@ -1,0 +1,9 @@
+{
+  "SQLConnection": {
+    "Host": "localhost",
+    "Port": "5432",
+    "DataBaseName": "search_engine_result",
+    "User": "postgres",
+    "Password": "GarDeN001"
+  }
+}
